@@ -1,1 +1,1 @@
-# ScreenSizeSwither
+ScreenSizeSwitch.cs is a C# script designed for quickly switching display resolutions and screen modes (fullscreen, windowed, borderless). It allows users to toggle screen dimensions and aspect ratios using presets or hotkeys without opening Windows display settings or GPU control panels.
