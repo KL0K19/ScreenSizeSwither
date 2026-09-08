@@ -6,7 +6,6 @@ using System.Text;
 
 namespace ScreenResManager
 {
-    // --- Логика работы с экраном ---
     public static class DisplayManager
     {
         [StructLayout(LayoutKind.Sequential)]
@@ -83,7 +82,6 @@ namespace ScreenResManager
         public override string ToString() => $"{Width}x{Height}";
     }
 
-    // --- Локализация ---
     public static class Lang
     {
         public static string CurrentCode = "en"; 
@@ -191,13 +189,10 @@ namespace ScreenResManager
         {
             Console.OutputEncoding = Encoding.UTF8;
 
-            // 1. Проверка и выбор языка при старте
             CheckAndLoadLanguage();
 
-            // 2. Загрузка разрешений
             LoadResolutions();
 
-            // 3. Основной цикл
             while (true)
             {
                 Console.Clear();
@@ -226,7 +221,7 @@ namespace ScreenResManager
                     if (choice == 0) break;
                     else if (choice == 8) AddResolution();
                     else if (choice == 9) DeleteResolution();
-                    else if (choice == 10) ChangeLanguageMenu(); // Вызов смены языка
+                    else if (choice == 10) ChangeLanguageMenu();
                     else if (choice > 0 && choice <= resolutions.Count)
                     {
                         var res = resolutions[choice - 1];
@@ -257,7 +252,6 @@ namespace ScreenResManager
             }
         }
 
-        // --- Выбор языка (логика) ---
         static void CheckAndLoadLanguage()
         {
             if (File.Exists(langFile))
@@ -265,7 +259,6 @@ namespace ScreenResManager
                 try
                 {
                     string code = File.ReadAllText(langFile).Trim();
-                    // Добавили "ru" в условие проверки
                     if (code == "en" || code == "ua" || code == "ru")
                     {
                         Lang.CurrentCode = code;
@@ -274,7 +267,6 @@ namespace ScreenResManager
                 }
                 catch { }
             }
-            // Если файла нет или ошибка - запускаем меню выбора
             ChangeLanguageMenu(true);
         }
 
